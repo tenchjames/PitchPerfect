@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B717639A1B50A49B00CEF507 /* images in Resources */ = {isa = PBXBuildFile; fileRef = B71763991B50A49B00CEF507 /* images */; };
 		B7D4EC2D1B35A4FA00906676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4EC2C1B35A4FA00906676 /* AppDelegate.swift */; };
 		B7D4EC2F1B35A4FA00906676 /* RecordSoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4EC2E1B35A4FA00906676 /* RecordSoundsViewController.swift */; };
 		B7D4EC321B35A4FA00906676 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D4EC301B35A4FA00906676 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71763991B50A49B00CEF507 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = "Pitch Perfect/images"; sourceTree = "<group>"; };
 		B7D4EC271B35A4FA00906676 /* Pitch Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D4EC2B1B35A4FA00906676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D4EC2C1B35A4FA00906676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		B7D4EC1E1B35A4FA00906676 = {
 			isa = PBXGroup;
 			children = (
+				B71763991B50A49B00CEF507 /* images */,
 				B7D4EC291B35A4FA00906676 /* Pitch Perfect */,
 				B7D4EC3F1B35A4FA00906676 /* Pitch PerfectTests */,
 				B7D4EC281B35A4FA00906676 /* Products */,
@@ -201,6 +204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B717639A1B50A49B00CEF507 /* images in Resources */,
 				B7D4EC321B35A4FA00906676 /* Main.storyboard in Resources */,
 				B7D4EC371B35A4FA00906676 /* LaunchScreen.xib in Resources */,
 				B7D4EC4F1B3EF83C00906676 /* movie_quote.mp3 in Resources */,
