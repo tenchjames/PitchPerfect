@@ -34,6 +34,12 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func stopAllAudio() {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+    }
+    
     func playSoundAtRate(rate: Float32) {
         stopButton.enabled = true
         audioPlayer.stop()
@@ -44,9 +50,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithVariablePitch(pitch: Float) {
         stopButton.enabled = true
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllAudio()
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
@@ -64,9 +68,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithVariableReverb(wetDryMix: Float) {
         stopButton.enabled = true
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllAudio()
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
@@ -104,9 +106,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopSoundPlayback(sender: UIButton) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllAudio()
         stopButton.enabled = false
     }
 }
