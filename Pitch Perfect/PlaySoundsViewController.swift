@@ -42,7 +42,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playSoundAtRate(rate: Float32) {
         stopButton.enabled = true
-        audioPlayer.stop()
+        stopAllAudio()
         audioPlayer.currentTime = 0.0
         audioPlayer.rate = rate
         audioPlayer.play()
