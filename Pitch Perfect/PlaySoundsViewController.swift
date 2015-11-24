@@ -19,10 +19,21 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
+        } catch {
+            print(error)
+        }
+        
         audioPlayer.enableRate = true
         audioEngine = AVAudioEngine()
-        audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
+        
+        do {
+           try audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl)
+        } catch {
+            print(error)
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,7 +62,7 @@ class PlaySoundsViewController: UIViewController {
     func playAudioWithVariablePitch(pitch: Float) {
         stopButton.enabled = true
         stopAllAudio()
-        var audioPlayerNode = AVAudioPlayerNode()
+        let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
         var changePitchEffect = AVAudioUnitTimePitch()
@@ -62,7 +73,11 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        audioEngine.startAndReturnError(nil)
+        do {
+            try audioEngine.start()
+        } catch {
+            print(error)
+        }
         audioPlayerNode.play()
     }
     

@@ -87,13 +87,13 @@
 			isa = PBXGroup;
 			children = (
 				B7D4EC2C1B35A4FA00906676 /* AppDelegate.swift */,
+				B7D4EC501B3F1DE900906676 /* RecordedAudio.swift */,
 				B7D4EC2E1B35A4FA00906676 /* RecordSoundsViewController.swift */,
+				B7D4EC4C1B3EECEB00906676 /* PlaySoundsViewController.swift */,
 				B7D4EC301B35A4FA00906676 /* Main.storyboard */,
 				B7D4EC331B35A4FA00906676 /* Images.xcassets */,
 				B7D4EC351B35A4FA00906676 /* LaunchScreen.xib */,
 				B7D4EC2A1B35A4FA00906676 /* Supporting Files */,
-				B7D4EC4C1B3EECEB00906676 /* PlaySoundsViewController.swift */,
-				B7D4EC501B3F1DE900906676 /* RecordedAudio.swift */,
 			);
 			path = "Pitch Perfect";
 			sourceTree = "<group>";
@@ -168,6 +168,7 @@
 		B7D4EC1F1B35A4FA00906676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "James Tench";
 				TargetAttributes = {
