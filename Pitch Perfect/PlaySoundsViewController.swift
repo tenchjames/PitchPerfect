@@ -65,7 +65,7 @@ class PlaySoundsViewController: UIViewController {
         let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
-        var changePitchEffect = AVAudioUnitTimePitch()
+        let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
         audioEngine.attachNode(changePitchEffect)
         
@@ -84,10 +84,10 @@ class PlaySoundsViewController: UIViewController {
     func playAudioWithVariableReverb(wetDryMix: Float) {
         stopButton.enabled = true
         stopAllAudio()
-        var audioPlayerNode = AVAudioPlayerNode()
+        let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
-        var reverbEffect = AVAudioUnitReverb()
+        let reverbEffect = AVAudioUnitReverb()
         reverbEffect.wetDryMix = wetDryMix
         audioEngine.attachNode(reverbEffect)
         
@@ -95,7 +95,11 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.connect(reverbEffect, to: audioEngine.outputNode, format: nil)
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        audioEngine.startAndReturnError(nil)
+        do {
+            try audioEngine.start()
+        } catch {
+            print(error)
+        }
         audioPlayerNode.play()
     }
     
@@ -104,7 +108,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func playReverbAudio(sender: UIButton) {
-        var reverbEffect:Float = 65.0 // adds some echo/reverb via wetDryMix
+        let reverbEffect:Float = 65.0 // adds some echo/reverb via wetDryMix
         playAudioWithVariableReverb(reverbEffect)
     }
     

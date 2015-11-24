@@ -27,11 +27,16 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
         // moved audio initialization here since record function
         // is also used to resume audio playback
-        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        var recordingName = "my_audio.wav"
-        var pathArray = [dirPath, recordingName]
-        let filePath = NSURL.fileURLWithPathComponents(pathArray)
-        audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let recordingName = "my_audio.wav"
+        let pathArray = [dirPath, recordingName]
+        let filePath = NSURL.fileURLWithPathComponents(pathArray)!
+        do {
+            try audioRecorder = AVAudioRecorder(URL: filePath, settings: [:])
+        } catch {
+            print(error)
+        }
+        
         audioRecorder.delegate = self;
         audioRecorder.meteringEnabled = true
     }
@@ -47,8 +52,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         pauseButton.hidden = false
         restartButton.hidden = false
         
-        var session = AVAudioSession.sharedInstance()
-        session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        } catch {
+            print(error)
+        }
+        
         audioRecorder.prepareToRecord()
         audioRecorder.record()
         
@@ -71,7 +81,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func resetAudio(sender: UIButton) {
-        var audioSession = AVAudioSession.sharedInstance()
+        let audioSession = AVAudioSession.sharedInstance()
         restartingAudio = true
         audioRecorder.stop()
         recordingInProgress.text = "tap to re-record"
@@ -90,7 +100,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func pauseRecording() {
-        var audioSession = AVAudioSession.sharedInstance()
+        let audioSession = AVAudioSession.sharedInstance()
         audioRecorder.pause()
         recordingInProgress.text = "paused - tap to resume"
         recordButton.enabled = true
@@ -100,7 +110,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         stopButton.hidden = false
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
-        audioSession.setActive(false, error: nil)
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            print(error)
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -125,7 +140,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             // perform segue to the next scene
             performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
-            println("Recording was not successful")
+            print("Recording was not successful")
             recordButton.enabled = true
             stopButton.hidden = true
         }
